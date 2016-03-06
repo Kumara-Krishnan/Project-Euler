@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+public class Solution {
+int n;
+    int arr[];
+    public void getData(){
+        Scanner scan=new Scanner(System.in);
+        n=scan.nextInt();
+        arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=scan.nextInt();
+        }
+    }
+    public void calc(){
+        for(int i=0;i<n;i++){
+            int lcm=1;
+            int [] num=IntStream.rangeClosed(2,arr[i]).toArray();
+            for(int k=0;k<num.length;k++){
+                if(num[k]!=1){
+                    int temp=num[k];
+                    lcm*=num[k];
+                    //System.out.println(num[k]+"  "+lcm);
+                    for(int l=0;l<num.length;l++){
+                        if(num[l]%temp==0){
+                            num[l]/=temp;
+                        }
+                        //System.out.print(num[l]+" ");
+                    }
+                    //System.out.println();
+                }
+            }
+            System.out.println(lcm);
+        }
+    }
+    public static void main(String[] args) {
+        Solution s=new Solution();
+        s.getData();
+        s.calc();
+    }
+}
